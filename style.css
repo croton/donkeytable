@@ -1,0 +1,31 @@
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+
+.tableContainer {
+  width: 80vw;
+  font-family: Segoe UI,Helvetica Neue,Arial,sans-serif;
+}
+
+.dataTables_length {
+  margin-bottom: 1em;
+}
+
+.dataTables_filter {
+  margin-bottom: 1em;
+}
+
+.donkeyTable {
+  width: 100vw;
+}
+
+.donkeyTable thead {
+  background-color: thistle;
+}
+
+h1, h2, h3 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+aside {
+  padding: 1em;
+}

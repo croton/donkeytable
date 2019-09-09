@@ -1,0 +1,96 @@
+<!doctype html><html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DonkeyTables</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+</head>
+<body>
+  <main>
+    <h1>DonkeyTables</h1>
+    <section>
+      <h2>A sample table: Albums</h2>
+      <div>
+        <h3>Of Note:</h3>
+        <ul>
+          <li>NO html header columns defined</li>
+          <li>NO data field names explicitly specified to datatable</li>
+        </ul>
+        <pre>
+          <code>
+          donkeytable.init(selector, dataset).createTable();
+          </code>
+        </pre>
+      </div>
+      <div class="tableContainer">
+        <table id="albums-table" class="donkeyTable">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section>
+      <h2>A sample table: Users</h2>
+      <div>
+        <h3>Of Note:</h3>
+        <ul>
+          <li>Html header columns defined</li>
+          <li>Data field names explicitly specified to datatable</li>
+          <li>A data field is hidden</li>
+          <li>A row-level button is added</li>
+        </ul>
+        <pre>
+          <code>
+          donkeytable.init(selector, dataset, ['id', 'name', 'username', 'phone', 'website'])
+            .hideColumns('id')
+            .addButton({name:'Edit', className:'rowBtn', hdlr: function(row) {console.log('Edit', row);}})
+            .createTable();
+          </code>
+        </pre>
+      </div>
+      <div class="tableContainer">
+        <table id="users-table" class="donkeyTable">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>User Name</td>
+              <th>Phone</th>
+              <th>Site</td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
+<script src="./donkeytable.js"></script>
+<script>
+  function initAlbumTable(selector, dataset) {
+    donkeytable.init(selector, dataset).createTable();
+  }
+  function initUserTable(selector, dataset) {
+    donkeytable.init(selector, dataset, ['id', 'name', 'username', 'phone', 'website'])
+      .hideColumns('id')
+      .addButton({name:'Edit', className:'rowBtn', hdlr: function(row) {console.log('Edit', row);}})
+      .createTable();
+  }
+
+  fetch('https://jsonplaceholder.typicode.com/albums?userId=3')
+    .then(resp=>resp.json())
+    .then(json=>initAlbumTable('#albums-table', json));
+
+  fetch('https://jsonplaceholder.typicode.com/users')
+    .then(resp=>resp.json())
+    .then(json=>initUserTable('#users-table', json));
+</script>
+</body>
+</html>
